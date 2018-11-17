@@ -101,15 +101,18 @@ To be particular, I will be using the following techniques for each of my resear
 
 #### Analysis
 
-**RQ1**
+**RQ1**  
+
 By using StanfordNER, I should be able to extract the locations, and scene descriptions that an author uses most frequently, and determine whether these locations reflect the home town of the author.
 
-**RQ2**
+**RQ2**  
+
 For sex ratios, I plan to use some ideas borrowed from [NLTK's Gender Identification](https://www.nltk.org/book/ch06.html) combined with other potential research. If these do not result in accurate results, then the sex of characters can be manually annotated.
 
 Ideally, given that the nature of this analysis does not impact real-world individuals, making an error or two should not affect my analysis.
 
-**RQ3**
+**RQ3**  
+
 For sentiment analysis, there are several existing lexicons that are known to give good results, such as:
  * [AFINN lexicon](https://github.com/fnielsen/afinn)
  * [Bing Liu’s lexicon](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html)

@@ -4,10 +4,10 @@
 
 1. [Why](#why)
 2. [The Plan](#the-plan)
-  1. [Collection](#collection)
-  2. [Processing](#processing)
-  3. [Analysis](#analysis)
-  4. [Deliverables](#deliverables)
+    1. [Collection](#collection)
+    2. [Processing](#processing)
+    3. [Analysis](#analysis)
+    4. [Deliverables](#deliverables)
 3. [Unknowns/Limitations](#unknownslimitations)
 4. [Motivation](#motivation)
 

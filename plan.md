@@ -1,6 +1,15 @@
 # Final Project Plan
 
-## Plan
+## Table of Contents
+
+1. [Why](#why)
+2. [The Plan](#the-plan)
+  1. [Collection](#collection)
+  2. [Processing](#processing)
+  3. [Analysis](#analysis)
+  4. [Deliverables](#deliverables)
+3. [Unknowns/Limitations](#unknownslimitations)
+4. [Motivation](#motivation)
 
 > “What an astonishing thing a book is. It's a flat object made from a tree with flexible parts on which are imprinted lots of funny dark squiggles. But one glance at it and you're inside the mind of another person, maybe somebody dead for thousands of years. Across the millennia, an author is speaking clearly and silently inside your head, directly to you. Writing is perhaps the greatest of human inventions, binding together people who never knew each other, citizens of distant epochs. Books break the shackles of time. A book is proof that humans are capable of working magic."  
  -- [*Carl Sagan, Cosmos, Part 11: The Persistence of Memory (1980)*](https://www.goodreads.com/quotes/460806-what-an-astonishing-thing-a-book-is-it-s-a-flat)
@@ -16,6 +25,8 @@ More concretely, I wish to explore the following hypotheses, recognizing that no
 3. How do various emotional aspects of the novel change over time for a particular author? Does he tend to keep his characters mostly in a state of happiness, misery, confusion or anger?
 
 I hope to understand these authors, their environments, mindsets and beliefs slightly better through this research.
+
+[Back to Top](#table-of-contents)
 
 ### The Plan
 
@@ -53,17 +64,14 @@ In order to extract the data necessary for analysis, I will be using tools made 
 #### Analysis
 
 **RQ1**
-
 By using StanfordNER, I should be able to extract the locations, and scene descriptions that an author uses most frequently, and determine whether these locations reflect the home town of the author.
 
 **RQ2**
-
 For gender ratios, I plan to use some ideas borrowed from [NLTK's Gender Identification](https://www.nltk.org/book/ch06.html) combined with other potential research. If these do not result in accurate results, then the genders of characters can be manually annotated.
 
 Ideally, given that the nature of this analysis does not impact real-world individuals, making an error or two should not affect my analysis.
 
 **RQ3**
-
 For sentiment analysis, there are several existing lexicons that are known to give good results, such as:
  * [AFINN lexicon](https://github.com/fnielsen/afinn)
  * [Bing Liu’s lexicon](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html)
@@ -82,9 +90,13 @@ This question is, in part, inspired from [this article](http://www.bbc.com/cultu
 
 For each research question, either a short writeup or a descriptive visualization that effectively answers the question will be presented.
 
+[Back to Top](#table-of-contents)
+
 ### Unknowns/Limitations
 
 As mentioned above, a part of my research is contingent upon the quality of the algorithms used. While RQ1 and RQ2 will be fairly robust to algorithmic errors, RQ3 is not. Lack of granularity in sentiment might result in less interesting results.
+
+[Back to Top](#table-of-contents)
 
 ### Motivation
 
@@ -93,3 +105,5 @@ My most primary drive to pursue this project is my own proclivity for reading. T
 In terms of the hypotheses that I'm trying to prove or disprove, there are several human-centered considerations. For one, adjusting for algorithmic bias, or even acknowledging it will be a significant portion of the analysis. For instance, it would be senseless to analyze novels written in French, especially since the tools and libraries I am using have been trained on English corpora.
 
 Similarly, since the novels are primarily from the 18th and 19th centuries, it is possible that certain aspects reflect that era (for instance, having lower or higher gender ratios than today's norms). Care must be taken before drawing injudicious conclusions.
+
+[Back to Top](#table-of-contents)

@@ -4,7 +4,6 @@
 
 1. [Why](#why)
     1. [Research Questions](#research-questions)
-    2. []
 2. [The Plan](#the-plan)
     1. [Collection](#collection)
     2. [Processing](#processing)

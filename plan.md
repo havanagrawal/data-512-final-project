@@ -16,25 +16,35 @@
 > “What an astonishing thing a book is. It's a flat object made from a tree with flexible parts on which are imprinted lots of funny dark squiggles. But one glance at it and you're inside the mind of another person, maybe somebody dead for thousands of years. Across the millennia, an author is speaking clearly and silently inside your head, directly to you. Writing is perhaps the greatest of human inventions, binding together people who never knew each other, citizens of distant epochs. Books break the shackles of time. A book is proof that humans are capable of working magic."  
  -- [*Carl Sagan, Cosmos, Part 11: The Persistence of Memory (1980)*](https://www.goodreads.com/quotes/460806-what-an-astonishing-thing-a-book-is-it-s-a-flat)
 
+> It's in literature that true life can be found. It's under the mask of fiction that you can tell the truth.
+-- [*Gao Xignjian](https://www.goodreads.com/quotes/7202226-it-s-in-literature-that-true-life-can-be-found-it-s)
+
 ### Why
 
-I have been an avid and voracious reader ever since the age of 12. I find books to be a fantastic source of knowledge, information and personal growth. Whether it is fictional, biographical or historical, a good novel captivates you, pulls you from the physical realm into itself. As the above quote so beautifully captures, a book allows you to listen to an author speak to you, directly, across time and space. The following research is simply an attempt on my part to listen just a little bit harder.
+I have been an avid and voracious reader ever since the age of 12. I find books to be a fantastic source of knowledge, information and personal growth. Whether it is fictional, biographical or historical, a good novel captivates you, pulls you from the physical realm into itself. As the above quote so beautifully captures, a book allows you to listen to an author speak to you, directly, across time and space.
+
+Further still, I believe that works of fiction often captures the true nature of society. They either reflect on the world, as it is, or what it might become. Either consciously or subconsciously, the worlds created by a writer capture their perspective. It is this idea that I wish to explore in this project.
 
 #### Research Questions
 
-More concretely, I wish to explore the following questions, recognizing that not all of them may be answerable:
+I intend to analyze a subset of popular works in the context of the [Bechdel Test](https://en.wikipedia.org/wiki/Bechdel_test).
 
-1. Do the worlds that authors construct reflect their own homes and surroundings? For instance, if an author places their characters mostly around London, is this any indication of where the author might have grown up/visited?
-2. What sort of gender ratios do novels tend to have? Does this change from author to author?
-3. How do various emotional aspects of the novel change over time for a particular author? Does he tend to keep his characters mostly in a state of happiness, misery, confusion or anger?
+> The Bechdel test is a measure of the representation of women in fiction. It asks whether a work features at least two women who talk to each other about something other than a man. The requirement that the two women must be named is sometimes added.
 
-For RQ1, I hypothesize that this must be true for most authors (> 50%).
+1. What fraction of these novels pass the Bechdel test, and to what extent?
+2. Is it reasonable to attempt to automate such tests, that rely heavily on social cues that may not be discernible through algorithmic means? If not, then what are the limitations that prevent us from doing so? More concretely:
+    1. I wish to build an interactive pipeline that can consume a piece of text, and allow one to analyze the snippets that directly concern themselves with the test,
+    2. Yield a result w.r.t the algorithm's belief about the extent to which the text passes the Bechdel test, analyze how close (or far) this is from reality, and identify the gaps, either in the tools, the technologies or my own methodology.
 
-I hope to understand these authors, their environments, mindsets and beliefs slightly better through this research.
+I hope to understand these authors, their environments, mindsets and beliefs slightly better through this research. I also hope that this will allow me to critically analyze existing tools and techniques, as well as my own human-centered algorithmic skills.
 
 [Back to Top](#table-of-contents)
 
 ### The Plan
+
+I intend to take a ["thick data"](https://medium.com/ethnography-matters/why-big-data-needs-thick-data-b4b3e75e3d7) approach to this research, i.e. instead of collecting data at scale, and performing superficial analysis, I will instead select a few novels and work with them. This will allow me to dive into the nitty-gritty details of where and why certain pieces of my pipeline fail, and whether I can manually annotate data to correct them.
+
+An implication of the above approach is that I cannot make generalizable claims about authors. However, what I can do is post a thorough report of a small subset of novels and authors, and explore the feasibility of doing this at scale.
 
 #### Collection
 
@@ -58,8 +68,6 @@ find -name "*zip" | xargs -n1 unzip
 ```
 
 For information about the authors themselves, data collection will be slightly more free form, and may require me to visit multiple sites to aggregate the details that I need (Goodreads, SparkNotes, etc).
-
-I will most likely handpick a few authors of personal interest to me, and analyze their works.
 
 #### Processing
 
@@ -95,39 +103,27 @@ Thus the author and title are easily extractable.
 In order to extract the data necessary for analysis, I will be using tools made available by [Stanford NLP's Group](https://nlp.stanford.edu/software/), and the [NLTK Library](http://www.nltk.org/) in Python.
 
 To be particular, I will be using the following techniques for each of my research questions:
-1. **RQ1**: Named Entity Recognition (NER) for locations
-2. **RQ2**: n-grams/bag-of-letters for analyzing sex of the characters
-3. **RQ3**: Sentiment analysis using existing models/lexicons
+1. [**Named Entity Recognition (NER)**](https://nlp.stanford.edu/software/CRF-NER.shtml) from StanfordNLP for identifying names of characters
+2. **n-grams/bag-of-letters/coreferent analysis** for analyzing the gender of the characters
+3. [**Quote Annotator**](https://stanfordnlp.github.io/CoreNLP/quote.html) from Stanford NLP to identify spoken dialogue.
 
 #### Analysis
 
-**RQ1**  
+By using StanfordNER, I should be able to extract the names of various characters. Through some pre-processing, I can disambiguate references to the same person (Mr. Holmes, Sherlock Holmes and S. Holmes).
 
-By using StanfordNER, I should be able to extract the locations, and scene descriptions that an author uses most frequently, and determine whether these locations reflect the home town of the author.
+For identifying gender, I plan to take a many-fold approach that _should_ yield the lowest error rate:
+  1. Using some ideas borrowed from [NLTK's Gender Identification](https://www.nltk.org/book/ch06.html).
+  2. Leverage occurrences of [coreferents](https://en.wikipedia.org/wiki/Coreference) (he/she/his/her) to identify gender.
+  3. Identify courtesy titles (Mr., Mrs., Miss) that very explicitly reveal the gender of the entity.
 
-**RQ2**  
-
-For sex ratios, I plan to use some ideas borrowed from [NLTK's Gender Identification](https://www.nltk.org/book/ch06.html) combined with other potential research. If these do not result in accurate results, then the sex of characters can be manually annotated.
-
-Ideally, given that the nature of this analysis does not impact real-world individuals, making an error or two should not affect my analysis.
-
-**RQ3**  
-
-For sentiment analysis, there are several existing lexicons that are known to give good results, such as:
- * [AFINN lexicon](https://github.com/fnielsen/afinn)
- * [Bing Liu’s lexicon](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html)
- * [MPQA subjectivity lexicon](http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/)
- * [SentiWordNet](http://sentiwordnet.isti.cnr.it/)
- * [VADER lexicon](https://github.com/cjhutto/vaderSentiment)
- * [TextBlob lexicon](https://github.com/sloria/TextBlob/blob/eb08c120d364e908646731d60b4e4c6c1712ff63/textblob/en/en-sentiment.xml)
-
-Ideally I should be able to analyze emotion at a granular level (happy/sad/fear/etc), but even positive/negative sentiments can reveal a lot about the writing patterns of an author.
-
-This question is, in part, inspired from [this article](http://www.bbc.com/culture/story/20180525-every-story-in-the-world-has-one-of-these-six-basic-plots)
+ * In cases where the gender is ambiguous (not discernible through context, even by a human), I will note it as such in my report.
+ * In cases where the gender is neither man nor woman, or the entity is simply genderless (The Cheshire Cat from Alice in Wonderland for instance), I will note it as such in my report.
 
 #### Deliverables
 
-For each research question, either a short writeup or a descriptive visualization that effectively answers the question will be presented.
+1. A report of the extent to which selected works pass the Bechdel test, both from manual as well as computational analysis.
+2. One or more visualizations of the conversations between characters, clearly identifying snippets that relate to the test.
+3. A reproducible, interactive approach to analyzing literary works in the context of the Bechdel test.
 
 [Back to Top](#table-of-contents)
 
@@ -147,11 +143,13 @@ I will explicitly be avoiding using these data at all.
 
 ### Unknowns/Limitations
 
-For RQ2, I recognize that gender is separate from sex, and my intent is to purely infer and report the _sex_ ratio. Unfortunately, due to the nature of the data available to me, this is in fact a binary variable. Thus, if authors did have characters with other genders, this will be missed by my analysis.
+I recognize that gender is separate from sex. The Bechdel test is very explicit in its wording, using the terms "man" and "woman", which implies that it relies on the gender of the entity, and not sex. It does not specify the behaviour of the test w.r.t. non-binary genders.
 
-A part of my research is contingent upon the quality of the algorithms used. While RQ1 and RQ2 will be fairly robust to algorithmic errors, RQ3 is not. Lack of granularity in identifying sentiment might result in less interesting results.
+Unfortunately, the tools and techniques at my disposal are limited in identifying even binary gender, let alone non-binary. Consequently, I recognize a potential challenge is that I may have to be skeptical about every computational/algorithmic result, and validate every item of interest manually.
 
-Finally, since the novels are primarily from the 18th and 19th centuries, it is possible that certain aspects reflect that era (for instance, having lower or higher sex ratios than today's norms). Care must be taken before drawing injudicious conclusions.
+As far as I understand, there was little to no representation of non-binary genders in 18th and 19th century classical works. As a result, I _expect_ that identifying the _biological sex_ of an entity should _typically_ be a strong indicator of their gender. However, this is only an assumption, and all ambiguities or errors in identifying the gender will be explicitly reported.
+
+Finally, since the novels are primarily from the 18th and 19th centuries, it is possible that certain aspects reflect that era. Passing or failing the Bechdel test is an aspect of a single work, and (IMO) should not be generalized to either the author or the time-period. Care must be taken before drawing injudicious conclusions.
 
 [Back to Top](#table-of-contents)
 
@@ -159,17 +157,12 @@ Finally, since the novels are primarily from the 18th and 19th centuries, it is 
 
 My most primary drive to pursue this project is my own proclivity for reading. The potential ability to understand a person through their writing fascinates me to no end.
 
-In terms of the hypotheses that I'm trying to prove or disprove, there are several human-centered considerations. For one, adjusting for algorithmic bias, or even acknowledging it will be a significant portion of the analysis. For instance, it would be senseless to analyze novels written in French, especially since the tools and libraries I am using have been trained on English corpora.
-
-As part of RQ2, it will be interesting to gauge various algorithms for social bias, and their maturity in terms of recognizing that gender is not in fact binary.
+As an individual with a rather strong computer-science oriented background, I have far too much faith in algorithms and pure computational research. My understanding of human-centered aspects has grown rather steeply with this course, and I hope that with this project, I can understand the nuances of human-centered algorithmic design, identify challenges in such design, and address them either through practice or future scope.
 
 [Back to Top](#table-of-contents)
 
 ### References
 
 A list of reference papers/articles that I might use, or have in some way inspired this project:
-
-1. [Every Story In The World Has One Of These 6 Basic Plots](http://www.bbc.com/culture/story/20180525-every-story-in-the-world-has-one-of-these-six-basic-plots)
-2. [Recognizing Emotion Presence in Natural Language Sentences](https://pdfs.semanticscholar.org/0607/e7b5967c909250b355e0cf8d945dc8592e1b.pdf)
-3. [Emotion recognition for sentences with unknown expressions based on semantic similarity by using Bag of Concepts](https://ieeexplore.ieee.org/document/7382148)
-4. [Personae - A Corpus for Author and Personality Prediction Using Text](http://www.lrec-conf.org/proceedings/lrec2008/pdf/759_paper.pdf)
+1. [Automating the Bechdel Test](http://www.aclweb.org/anthology/N15-1084)
+2. [A Social Network Analysis of Alice in Wonderland](https://www.semanticscholar.org/paper/Social-Network-Analysis-of-Alice-in-Wonderland-Agarwal-Corvalan/76842360337ca07a63a27a75319f63236e8c9cfe)

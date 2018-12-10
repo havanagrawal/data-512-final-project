@@ -6,6 +6,16 @@ Assignment repository for DATA 512: Final Project
 
 This repository contains a set of notebooks and reports regarding the analysis of popular 19th century literature in the context of the [Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test). The results of the analyses are summarized [below](). It also showcases the gaps present in state-of-the-art NLP that hinder us from performing such analyses at scale.
 
+### Approach
+
+**1. Qualitative**
+
+This repository consists of a "qualitative" analysis of select novels. This implies that the results may not be statistically significant, and cannot be generalized to the author, genre or era.
+
+**2. Speculative**
+
+Instead of making a strong conclusion about whether or not a novel passes the Bechdel test, this repository only presents the necessary context, numbers and visualizations related to the test, and lets the reader decide whether or not they find the results satisfactory. 
+
 ## Reproducibility
 
 While each independent notebook is completely reproducible, due to the qualitative nature of the analyses, it is not possible to replicate the research as is for any arbitrary novel. Instead, it is advisable to use the template notebook in the repository and modify it iteratively and interactively, to suit the novel at hand.
@@ -40,18 +50,34 @@ pip3 install pandas numpy nltk matplotlib unidecode
 ```
 python3 convert_novel.py --input-file novels/alice-in-wonderland.txt --output-file alice-in-wonderland-standard.txt
 ```
-Use `python3 convert_novel.py --help` to see the complete capabilities of the script
+Use `python3 convert_novel.py --help` to see the complete capabilities of the script.  
 6. Run the Stanford NER program on the processed novel, providing the unzipped Stanford NLP directory's contents as the classpath:
 ```
 java -Xmx10g -cp "stanford-corenlp-full-2018-10-05/*" edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote -file novels/alice-in-wonderland-standard.txt -outputFormat json
 ```
 7. Use the [reference report](./Final%20Report.ipynb) to perform the analysis.
 
+
 ## Data Schema
 
 The original data is taken as free-form text files from Project Gutenberg. Since the files are fixed column width, we use a short script to convert them into a readable format.
 
 After running the StanfordNER script, we get a JSON file that contains various analyzed linguistic forms. We use the relevant portions of this JSON file for our analysis.
+
+## Results Summary
+
+In this repository, 4 novels are qualitatively analyzed w.r.t. the test. These novels are selected such that they span varying genres, authors, central themes and narrative styles. 
+
+The graph on the left is a simple histogram of the genders of characters. It should be noted that gender recognition is a challenging task, especially without context, and so a generous error rate (say 10-20%) should be accounted for.
+
+The graph on the right plots each conversation between two women as a data point. The x-axis represents the fraction of words in the conversation that refer to men, while the y-axis represents the fraction of words in the conversation that refer to women.
+
+| Novel              | Gender Ratios | Conversations |  
+|--------------------|---------------|---------------|  
+|Alice in Wonderland |![Alice in Wonderland](images/aliceGenders.png) | ![Alice in Wonderland](images/alicePlot.png)|  
+|Great Expectations  |![Great Expectations](images/greatExpectationsGenders.png) | ![Great Expectations](images/greatExpectationsConversations.png)|
+|Hamlet              |![Hamlet](images/hamletGenders.png) | ![Hamlet](images/hamletConversations.png)|
+|Pride and Prejudice |![Pride and Prejudice](images/prideAndPrejudiceGenders.png) | ![Hamlet](images/prideAndPrejudiceConversations.png)|
 
 ## License
 

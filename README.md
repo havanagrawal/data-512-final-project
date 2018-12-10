@@ -10,11 +10,11 @@ This repository contains a set of notebooks and reports regarding the analysis o
 
 **1. Qualitative**
 
-This repository consists of a "qualitative" analysis of select novels. This implies that the results may not be statistically significant, and cannot be generalized to the author, genre or era.
+This repository consists of a "thick" [7], qualitative analysis of select novels. This implies that the results may not be statistically significant, and cannot be generalized to the author, genre or era.
 
-**2. Speculative**
+**2. Speculative [8]**
 
-Instead of making a strong conclusion about whether or not a novel passes the Bechdel test, this repository only presents the necessary context, numbers and visualizations related to the test, and lets the reader decide whether or not they find the results satisfactory. 
+Instead of making a strong conclusion about whether or not a novel passes the Bechdel test, this repository only presents the necessary context, numbers and visualizations related to the test, and lets the reader decide whether or not they find the results satisfactory.
 
 ## Reproducibility
 
@@ -23,7 +23,7 @@ While each independent notebook is completely reproducible, due to the qualitati
 
 ## Data
 
-Since Project Gutenberg does not restrict its data under a license, a few novels are distributed along with this repository, along with their processed versions (required for analysis). 
+Since Project Gutenberg does not restrict its data under a license, a few novels are distributed along with this repository, along with their processed versions (required for analysis).
 
 ## How To Run For a New Novel
 
@@ -42,7 +42,7 @@ git clone https://github.com/havanagrawal/data-512-final-project.git
 ```
 2. Install the required libraries:
 ```
-pip3 install pandas numpy nltk matplotlib unidecode 
+pip3 install pandas numpy nltk matplotlib unidecode
 ```
 3. Download and unzip the latest version of Stanford NER from [here](https://nlp.stanford.edu/software/CRF-NER.html#Download)
 4. Download a novel from Project Gutenberg in text form, or use one from the [`novels`](./novels) directory in this repository.
@@ -66,7 +66,7 @@ After running the StanfordNER script, we get a JSON file that contains various a
 
 ## Results Summary
 
-In this repository, 4 novels are qualitatively analyzed w.r.t. the test. These novels are selected such that they span varying genres, authors, central themes and narrative styles. 
+In this repository, 4 novels are qualitatively analyzed w.r.t. the test. These novels are selected such that they span varying genres, authors, central themes and narrative styles.
 
 The graph on the left is a simple histogram of the genders of characters. It should be noted that gender recognition is a challenging task, especially without context, and so a generous error rate (say 10-20%) should be accounted for.
 
@@ -78,6 +78,17 @@ The graph on the right plots each conversation between two women as a data point
 |Great Expectations  |![Great Expectations](images/greatExpectationsGenders.png) | ![Great Expectations](images/greatExpectationsConversations.png)|
 |Hamlet              |![Hamlet](images/hamletGenders.png) | ![Hamlet](images/hamletConversations.png)|
 |Pride and Prejudice |![Pride and Prejudice](images/prideAndPrejudiceGenders.png) | ![Hamlet](images/prideAndPrejudiceConversations.png)|
+
+## References
+
+1. [Women better represented in Victorian novels than modern](https://www.theguardian.com/books/2018/feb/19/women-better-represented-in-victorian-novels-than-modern-finds-study)
+2. [Why Diverse Fiction Matters](https://www.tckpublishing.com/why-diverse-fiction-matters/)
+3. [Why We Need Diverse YA Books That Represent Marginalized Characters In All Of Their Complex, Quirky Glory](https://www.bustle.com/p/why-we-need-diverse-ya-books-that-represent-marginalized-characters-in-all-of-their-complex-quirky-glory-8003404)  
+4. [This is Why We Need Diversity in Fiction](https://katetilton.com/diversity-fiction/)
+5. [Automating The Bechdel-Wallace Test](http://nht.ecs.soton.ac.uk/2011/papers/12-flawrence.pdf)
+6. [Key Female Characters in Film Have More to Talk About Besides Men: Automating the Bechdel Test](http://aclweb.org/anthology/N/N15/N15-1084.pdf)
+7. [Why Big Data Needs Thick Data](https://medium.com/ethnography-matters/why-big-data-needs-thick-data-b4b3e75e3d7)
+8. [Towards Human-Centered Algorithm Design](https://journals.sagepub.com/doi/pdf/10.1177/2053951717718854)
 
 ## License
 

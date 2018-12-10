@@ -45,7 +45,7 @@ Use `python3 convert_novel.py --help` to see the complete capabilities of the sc
 ```
 java -Xmx10g -cp "stanford-corenlp-full-2018-10-05/*" edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote -file novels/alice-in-wonderland-standard.txt -outputFormat json
 ```
-7. Use the [reference report](./Final Report.ipynb) to perform the analysis.s
+7. Use the [reference report](./Final%20Report.ipynb) to perform the analysis.
 
 ## Data Schema
 

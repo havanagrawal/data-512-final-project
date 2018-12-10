@@ -10,6 +10,33 @@ This repository contains a set of notebooks and reports regarding the analysis o
 
 While each independent notebook is completely reproducible, due to the qualitative nature of the analyses, it is not possible to replicate the research as is for any arbitrary novel. Instead, it is advisable to use the template notebook in the repository and modify it iteratively and interactively, to suit the novel at hand.
 
+
+## Data
+
+Since Project Gutenberg does not restrict its data under a license, a few novels are distributed along with this repository, along with their processed versions (required for analysis). 
+
+## How To Run
+
+### Prerequisites
+
+1. Python 3.5 or later
+2. pip3
+3. A machine with at least 8G of RAM
+4. Java 7 or above
+
+### Steps
+
+1. Clone this repository:
+```
+git clone https://github.com/havanagrawal/data-512-final-project.git
+```
+2. Install the required libraries:
+```
+pip3 install pandas numpy nltk matplotlib unidecode 
+```
+
+3. Download and unzip the latest version of Stanford NER from [here]()
+
 ## Data Schema
 
 The original data is taken as free-form text files from Project Gutenberg. Since the files are fixed column width, we use a short script to convert them into a readable format.

@@ -64,6 +64,101 @@ The original data is taken as free-form text files from Project Gutenberg. Since
 
 After running the StanfordNER script, we get a JSON file that contains various analyzed linguistic forms. We use the relevant portions of this JSON file for our analysis.
 
+A small, sample annotated JSON file can be found for [The Red Headed League](./novels/the-red-headed-league.txt) story [here](./annotated/the-red-headed-league.txt.json)
+
+For the purpose of illustration (and in the interest of saving space), a cropped version is shown below:
+
+```json
+{
+  "docId": "the-red-headed-league.txt",
+  "sentences": [
+    {
+      "index": 0,
+      "basicDependencies": [
+        {
+          "dep": "ROOT",
+          "governor": 0,
+          "governorGloss": "ROOT",
+          "dependent": 3,
+          "dependentGloss": "called"
+        },
+        {
+          "dep": "nsubj",
+          "governor": 3,
+          "governorGloss": "called",
+          "dependent": 1,
+          "dependentGloss": "I"
+        },
+        ...
+     ]
+   }
+ ]
+ "corefs": {
+    "26": [
+      {
+        "id": 17,
+        "text": "the room",
+        "type": "NOMINAL",
+        "number": "SINGULAR",
+        "gender": "NEUTRAL",
+        "animacy": "INANIMATE",
+        "startIndex": 19,
+        "endIndex": 21,
+        "headIndex": 20,
+        "sentNum": 2,
+        "position": [
+          2,
+          9
+        ],
+        "isRepresentativeMention": false
+      },
+      ...
+    ],
+    ...
+  }
+  "quotes": [
+    ...
+    {
+      "id": 0,
+      "text": "“You could not possibly have come at a better time, my dear Watson,”",
+      "beginIndex": 327,
+      "endIndex": 395,
+      "beginToken": 66,
+      "endToken": 82,
+      "beginSentence": 2,
+      "endSentence": 2,
+      "speaker": "Unknown",
+      "canonicalSpeaker": "Sherlock Holmes"
+    },
+    {
+      "id": 1,
+      "text": "“I was afraid that you were engaged.”",
+      "beginIndex": 416,
+      "endIndex": 453,
+      "beginToken": 87,
+      "endToken": 96,
+      "beginSentence": 3,
+      "endSentence": 3,
+      "speaker": "Watson",
+      "canonicalSpeaker": "Watson"
+    },
+    {
+      "id": 2,
+      "text": "“So I am. Very much so.”",
+      "beginIndex": 455,
+      "endIndex": 479,
+      "beginToken": 97,
+      "endToken": 106,
+      "beginSentence": 4,
+      "endSentence": 5,
+      "speaker": "Wilson",
+      "canonicalSpeaker": "Sherlock Holmes"
+    },
+    ...
+  ],
+} 
+```
+
 ## Results Summary
 
 In this repository, 4 novels are qualitatively analyzed w.r.t. the test. These novels are selected such that they span varying genres, authors, central themes and narrative styles.

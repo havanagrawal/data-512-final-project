@@ -15,7 +15,7 @@ While each independent notebook is completely reproducible, due to the qualitati
 
 Since Project Gutenberg does not restrict its data under a license, a few novels are distributed along with this repository, along with their processed versions (required for analysis). 
 
-## How To Run
+## How To Run For a New Novel
 
 ### Prerequisites
 
@@ -34,8 +34,18 @@ git clone https://github.com/havanagrawal/data-512-final-project.git
 ```
 pip3 install pandas numpy nltk matplotlib unidecode 
 ```
-
-3. Download and unzip the latest version of Stanford NER from [here]()
+3. Download and unzip the latest version of Stanford NER from [here](https://nlp.stanford.edu/software/CRF-NER.html#Download)
+4. Download a novel from Project Gutenberg in text form, or use one from the [`novels`](./novels) directory in this repository.
+5. Use the `convert_novel.py` script to convert the novel into a standard format:
+```
+python3 convert_novel.py --input-file novels/alice-in-wonderland.txt --output-file alice-in-wonderland-standard.txt
+```
+Use `python3 convert_novel.py --help` to see the complete capabilities of the script
+6. Run the Stanford NER program on the processed novel, providing the unzipped Stanford NLP directory's contents as the classpath:
+```
+java -Xmx10g -cp "stanford-corenlp-full-2018-10-05/*" edu.stanford.nlp.pipeline.StanfordCoreNLP -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote -file novels/alice-in-wonderland-standard.txt -outputFormat json
+```
+7. Use the [reference report](./Final Report.ipynb) to perform the analysis.s
 
 ## Data Schema
 

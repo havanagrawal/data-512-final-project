@@ -4,7 +4,7 @@ Assignment repository for DATA 512: Final Project
 
 ## Introduction
 
-This repository contains a set of notebooks and reports regarding the analysis of popular 19th century literature in the context of the [Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test). The results of the analyses are summarized [below](). It also showcases the gaps present in state-of-the-art NLP that hinder us from performing such analyses at scale.
+This repository contains a set of notebooks and reports regarding the analysis of popular 19th century literature in the context of the [Bechdel test](https://en.wikipedia.org/wiki/Bechdel_test). The results of the analyses are summarized [below](results-summary). It also showcases the gaps present in state-of-the-art NLP that hinder us from performing such analyses at scale.
 
 ### Approach
 
